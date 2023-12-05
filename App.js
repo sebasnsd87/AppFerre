@@ -6,6 +6,7 @@ import AddProduct from "./src/components/AddProduct"
 import ListProduct from "./src/components/ListProduct"
 
 
+
 const App = () => {
 
     const [newTitleProduct,setNewTitleProduct] = useState("")
@@ -35,6 +36,9 @@ const App = () => {
       setProducts(current => current.filter(product => product.id !== productSelected.id))
       setModalVisible(false)
     }
+
+    
+
     return  <View  style={styles.container}>
               <AddProduct
                 valueTitle = {newTitleProduct}
@@ -47,12 +51,15 @@ const App = () => {
                 products = {products}
                 onModal = {handlerModal}
               />
-              <ModalDelete
-                product = {productSelected}
-                visible={modalVisible}
-                onModal = {handlerModal}
-                onDelete={handlerDeleteProduct}
-              />
+             <ModalDelete
+              product={productSelected}
+              visible={modalVisible}
+              onModal={setModalVisible}
+              onDelete={handlerDeleteProduct}
+            />
+
+
+               
            </View>
     
   }
