@@ -8,7 +8,7 @@ const Home = ({setCategorySelected}) => {
   
   return (
         <>
-            <Header title='Categories' />
+            <Header title='Categorias' />
             <Categoria setCategorySelected={setCategorySelected}/>
         </>
   )
