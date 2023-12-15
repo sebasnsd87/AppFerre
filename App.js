@@ -1,8 +1,9 @@
 import { StyleSheet, View } from 'react-native'
-import Home from './src/Screens/Home'
-import ItemListCategories from './src/Screens/ItemListCategories'
+import Home from './src/Screen/Home.jsx'
+import ItemListCategories from './src/Screen/ItemListCategories.jsx'
 import { useState } from 'react'
 import { useFonts } from "expo-font"
+import { colors } from './src/Global/colors.js'
 
 const  App = () => {
   const [categorySelected,setCategorySelected] = useState("")
@@ -32,7 +33,7 @@ export default App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:colors.green2,
     alignItems: 'center',
     justifyContent: 'start',
   },

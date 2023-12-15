@@ -1,24 +1,25 @@
 import { FlatList, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import Header from '../components/Header'
 import Search from '../components/Search'
-import allProducts from "../Data/products.json"
-import ProductItem from '../Components/ProductItem'
+import allProducts from "../Data/productos.json"
+import ProductoItem from '../components/ProductoItem'
 import { useEffect, useState } from 'react'
+import { colors } from '../Global/colors'
 
 
-const ItemListCategories = ({category}) => {
+const ItemListCategories = ({categoria}) => {
 
   const [keyword,setKeyword] = useState("")
   const [products,setProducts] = useState(allProducts)
 
   useEffect(()=>{
 
-    if(category){
-      const productsCategory = allProducts.filter(product => product.category === category)
-      const productsFiltered = productsCategory.filter(product => product.title.includes(keyword))
+    if(categoria){
+      const productsCategory = allProducts.filter(product => product.categoria === categoria)
+      const productsFiltered = productsCategory.filter(product => product.nombre.includes(keyword))
       setProducts(productsFiltered)
     }else{
-      const productsFiltered = allProducts.filter(product => product.title.includes(keyword))
+      const productsFiltered = allProducts.filter(product => product.nombre.includes(keyword))
       setProducts(productsFiltered)
     }
 
@@ -33,7 +34,7 @@ const ItemListCategories = ({category}) => {
         style={styles.container}
         data={products}
         keyExtractor={item => item.id}
-        renderItem={({item})=> <ProductItem item={item}/>}
+        renderItem={({item})=> <ProductoItem item={item}/>}
       />
     </>
   )
@@ -43,6 +44,7 @@ export default ItemListCategories
 
 const styles = StyleSheet.create({
  container:{
-  width:"100%"
+  width:"100%",
+  backgroundColor:colors.green2
  }
 })

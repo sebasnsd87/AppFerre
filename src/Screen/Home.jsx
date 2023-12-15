@@ -1,13 +1,15 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import Header from '../components/Header'
-import Categories from '../Components/Categories'
+import Categoria from '../components/Categoria'
+import { colors } from 'react-native-elements'
+
 
 const Home = ({setCategorySelected}) => {
   
   return (
         <>
             <Header title='Categories' />
-            <Categories setCategorySelected={setCategorySelected}/>
+            <Categoria setCategorySelected={setCategorySelected}/>
         </>
   )
 }
@@ -15,5 +17,6 @@ const Home = ({setCategorySelected}) => {
 export default Home
 
 const styles = StyleSheet.create({
+  
 
 })
