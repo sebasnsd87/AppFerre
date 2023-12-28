@@ -1,20 +1,18 @@
-import { StyleSheet, SafeAreaView, StatusBar } from 'react-native'
-import Home from './src/Screen/Home.jsx'
-import ItemListCategories from './src/Screen/ItemListCategories.jsx'
-import { useState } from 'react'
+import { StyleSheet,StatusBar } from 'react-native'
 import { useFonts } from "expo-font"
-import { colors } from './src/Global/colors.js'
-import ItemDetails from './src/Screen/ItemDetails.jsx'
-import Footer from './src/components/Footer.jsx'
+import { colors } from './src/Global/colors'
+import Navegacion from './src/Navigation/Navegacion'
+import { store } from './src/app/Store'
+import { Provider } from 'react-redux'
 
-const  App = () => {
-  const [categorySelected,setCategorySelected] = useState("")
-  const [productDetailId,setProductDetailId] = useState(0)
-  
+
+const App = () => {
+
   const [fontLoaded] = useFonts({
     Josefin:require("./assets/Fonts/JosefinSans-Bold.ttf"),
+    PlayfairDisplay:require("./assets/Fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf"),
     Lobster:require("./assets/Fonts/Lobster-Regular.ttf"),
-    PlayfairDisplay:require("./assets/Fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf")
+    RobotoMono:require("./assets/Fonts/RobotoMono-VariableFont_wght.ttf")
   })
 
   if(!fontLoaded) return null
@@ -22,27 +20,11 @@ const  App = () => {
   
   return (
     <>
-      <StatusBar
-        backgroundColor={colors.green1}
-      />
-      <SafeAreaView style={styles.container}>
-        {categorySelected ?
-            productDetailId != 0 ? 
-                <ItemDetails productDetailId={productDetailId} setProductDetailId={setProductDetailId} />
-              :
-                <ItemListCategories 
-                    category = {categorySelected} 
-                    setCategorySelected={setCategorySelected}
-                    setProductDetailId={setProductDetailId}
-                  />
-              
-          :
-          <Home setCategorySelected={setCategorySelected}/>
-        }
-
-        <Footer/>
-      
-      </SafeAreaView>
+      <StatusBar backgroundColor={colors.green1}/>
+      <Provider store={store}>
+        <Navegacion/>
+      </Provider>
+      <Footer/>
     </>
   )
 }
@@ -53,9 +35,10 @@ export default App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:colors.green2,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'start',
   },
 })
+
 
