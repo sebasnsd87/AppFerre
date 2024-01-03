@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import shopReducer from "../Features/ShopSlice"
+import shopReducer from "../Features/shopSlice"
 
 export const store = configureStore({
   reducer: {

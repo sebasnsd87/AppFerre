@@ -1,14 +1,17 @@
-import React from "react";
-import { StyleSheet, Text, Image, Pressable, useWindowDimensions } from "react-native";
-import { colors } from "../Global/colors";
+import { StyleSheet, Text,Image,useWindowDimensions, Pressable } from 'react-native'
+import { colors } from '../Global/colors'
+import {  useDispatch } from 'react-redux'
+import { setProductSelected } from '../Features/shopSlice'
 
-
-const ProductItem = ({item , setProductDetailId }) => {
+const ProductoItem = ({item ,navigation,route }) => {
 
   const {width} = useWindowDimensions()
-
+  const dispatch = useDispatch()
   return (
-    <Pressable style={styles.container} onPress={()=> setProductDetailId(item.id)} >
+    <Pressable style={styles.container}  onPress={()=>{
+      dispatch( setProductSelected(item.id))
+      navigation.navigate("Product",{id:item.id})
+      }} >
       <Text style={width > 350 ? styles.text : styles.textMin}>{item.title}</Text>
       <Image
             style={styles.image}
@@ -19,7 +22,7 @@ const ProductItem = ({item , setProductDetailId }) => {
   )
 }
 
-export default ProductItem
+export default ProductoItem
 
 const styles = StyleSheet.create({
    container:{

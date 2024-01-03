@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet } from 'react-native'
-import allOrders from "../Data/orders.json"
-import OrdenItem from '../Components/OrdenItem'
+import allOrders from "../Data/orden.json"
+import OrdenItem from '../components/OrdenItem'
 
 const Ordenes = () => {
   return (

@@ -1,37 +1,35 @@
-import  { useEffect, useState } from 'react'
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
-import allProducts from '../Data/productos.json'
+import { FlatList, StyleSheet} from 'react-native'
+import Search from '../components/Search'
+import ProductoItem from '../components/ProductoItem'
+import { useEffect, useState } from 'react'
 import { colors } from '../Global/colors'
+import { useSelector } from 'react-redux'
 
 const ItemListCategories = ({navigation, route}) => {
 
+  const productsFilteredByCategory = useSelector(state => state.shop.value.productsFilteredByCategory)
+  const [keyword,setKeyword] = useState("")
+  const [products,setProducts] = useState(productsFilteredByCategory)
+
+  useEffect(()=>{
+
+      const productsFiltered = productsFilteredByCategory.filter(product => product.title.includes(keyword))
+      setProducts( productsFiltered)
 
 
-  const { category } = route.params
-  const [products, setProducts] = useState([])
+  },[keyword,productsFilteredByCategory])
 
-  useEffect(() => {
-    const productsFilted = allProducts.filter((product) => product.category === category);
-    setProducts(productsFilted);
-  }, [category])
 
   return (
-    <View style={styles.container}>
+    <>
+      <Search setKeyword={setKeyword}/>
       <FlatList
+        style={styles.container}
         data={products}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <Pressable
-            style={styles.productItem}
-            onPress={() => {
-              navigation.navigate('ItemDetails', { id: item.id });
-            }}
-          >
-            <Text style={styles.productTitle}>{item.title}</Text>
-          </Pressable>
-        )}
+        keyExtractor={item => item.id}
+        renderItem={({item})=> <ProductoItem item={item} navigation={navigation} route={route} />}
       />
-    </View>
+    </>
   )
 }
 

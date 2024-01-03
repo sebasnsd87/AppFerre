@@ -2,7 +2,7 @@ import { StyleSheet, Text, View,FlatList, Pressable } from 'react-native'
 import allCart from "../Data/cart.json"
 import { useEffect, useState } from 'react'
 import CartItem from '../Components/CartItem'
-import Counter from '../Components/Counter'
+
 
 const Cart = () => {
 
@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-        <Counter/>
+        
         <FlatList
             data={cart}
             keyExtractor={item => item.id}

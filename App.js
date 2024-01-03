@@ -2,7 +2,7 @@ import { StyleSheet,StatusBar } from 'react-native'
 import { useFonts } from "expo-font"
 import { colors } from './src/Global/colors'
 import Navegacion from './src/Navigation/Navegacion'
-import { store } from './src/app/Store'
+import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 
 
@@ -24,7 +24,7 @@ const App = () => {
       <Provider store={store}>
         <Navegacion/>
       </Provider>
-      <Footer/>
+     
     </>
   )
 }

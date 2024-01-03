@@ -1,30 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import allProducts from "../Data/productos.json";
-import { colors } from '../Global/colors';
+import { StyleSheet, Text, View , Image, Pressable } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { colors } from '../Global/colors'
+import { useSelector } from 'react-redux'
 
 const ItemDetails = ({route}) => {
-  const { id } = route.params;
-  const [product, setProduct] = useState({});
 
-  useEffect(() => {
-    const productFind = allProducts.find((product) => product.id === id);
-    setProduct(productFind);
-  }, [id]);
+  const product = useSelector((state)=> state.shop.value.productSelected)
+  const images = product.images ? product.images : []
+
+
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{ uri: product.thumbnail }}
-        resizeMode='cover'
-      />
-      <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.description}>{product.description}</Text>
-      <Text style={styles.price}>{`$${product.price}`}</Text>
+      <View style={styles.content} >
+          <Image
+            style={styles.image}
+            source={{uri:images[2]}}
+            resizeMode='cover's
+          />
+          <View style={styles.containerText}>
+            <Text style={styles.title}>{product.title}</Text>
+            <Text>{product.description}</Text>
+          </View>
+          <View style={styles.containerPrice}>
+            <Text style={styles.price}>$ {product.price}</Text>
+            <Pressable style={styles.buyNow}>
+              <Text style={styles.buyNowText}>Buy Now</Text>
+            </Pressable>
+          </View>
+        </View>
     </View>
-  );
-};
+  )
+}
 
 export default ItemDetails
 
