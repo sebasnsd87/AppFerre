@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,FlatList, Pressable } from 'react-native'
 import allCart from "../Data/cart.json"
 import { useEffect, useState } from 'react'
-import CartItem from '../Components/CartItem'
+import CartItem from '../components/CartItem'
 
 
 const Cart = () => {
@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
     },
     text:{
         color:"white",
-        fontFamily:"PlayFair"
+        fontFamily:"Josefins"
     }
 })

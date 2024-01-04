@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View , Image, Pressable } from 'react-native'
-import React, { useEffect, useState } from 'react'
 import { colors } from '../Global/colors'
 import { useSelector } from 'react-redux'
 
